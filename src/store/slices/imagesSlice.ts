@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk, type PayloadAction } from "@reduxjs/toolkit"
-import type { Image, Comment } from "../../../../image-gallery/src/types"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { addCommentToImage, addLike, fetchImageById, fetchImagesFromDB, removeLike } from "@/services/gallery-services"
+import { Comment, Image } from "@/types"
 
 interface ImagesState {
   items: Image[]
@@ -55,7 +55,7 @@ const imagesSlice = createSlice({
         state.loading = true
         state.error = null
       })
-      .addCase(fetchImages.fulfilled, (state, action: PayloadAction<Image[]>) => {
+      .addCase(fetchImages.fulfilled, (state, action) => {
         state.loading = false
         state.items = action.payload
       })
